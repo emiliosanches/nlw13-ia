@@ -13,8 +13,11 @@ import {
 import { Slider } from "./components/ui/slider";
 import { VideoInputForm } from "./components/video-input-form";
 import { PromptSelect } from "./components/prompt-select";
+import { useState } from "react";
 
 export function App() {
+  const [template, setTemplate] = useState("");
+
   return (
     <div className="min-h-screen flex flex-col">
       <div className="px-6 py-3 flex items-center justify-between border-b">
@@ -38,6 +41,7 @@ export function App() {
         <div className="flex flex-col flex-1 gap-4">
           <div className="grid grid-rows-2 gap-4 flex-1">
             <Textarea
+              value={template}
               className="resize-none p-4 leading-relaxed"
               placeholder="Inclua o prompt para a IA..."
             />
@@ -63,7 +67,7 @@ export function App() {
           <form className="space-y-6">
             <div className="space-y-1">
               <Label>Modelo</Label>
-              <PromptSelect />
+              <PromptSelect onPromptSelect={setTemplate} />
             </div>
 
             <div className="space-y-1">
