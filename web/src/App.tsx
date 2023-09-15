@@ -17,6 +17,7 @@ import { useState } from "react";
 
 export function App() {
   const [template, setTemplate] = useState("");
+  const [temperature, setTemperature] = useState(0.5);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -93,7 +94,13 @@ export function App() {
             <div className="space-y-4">
               <Label>Temperatura</Label>
 
-              <Slider min={0} max={1} step={0.1} />
+              <Slider
+                value={[temperature]}
+                onValueChange={(v) => setTemperature(v[0])}
+                min={0}
+                max={1}
+                step={0.1}
+              />
 
               <span className="block text-xs text-muted-foreground italic leading-relaxed">
                 Valores mais altos causam um resultado mais aleatório, valores
