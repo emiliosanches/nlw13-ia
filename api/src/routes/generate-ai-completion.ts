@@ -19,12 +19,12 @@ export async function generateAiCompletionRoute(app: FastifyInstance) {
   app.post("/ai-completion", async (req, reply) => {
     const bodySchema = z.object({
       videoId: z.string().uuid(),
-      template: z.string(),
+      prompt: z.string(),
       temperature: z.number().min(0).max(1).default(0.5),
       model: z.enum(["gpt-3.5-turbo", "gpt-4"]),
     });
 
-    const { videoId, template, temperature, model } = bodySchema.parse(
+    const { videoId, prompt, temperature, model } = bodySchema.parse(
       req.body
     );
 
@@ -39,7 +39,7 @@ export async function generateAiCompletionRoute(app: FastifyInstance) {
         error: "Video transcription not generated yet",
       });
 
-    const promptMessage = template.replace(
+    const promptMessage = prompt.replace(
       /{transcription}/g,
       video.transcription
     );
