@@ -95,7 +95,7 @@ export function VideoInputForm({ onVideoUploaded }: VideoInputFormProps) {
 
     setStatus("GENERATING");
 
-    const transcriptionResponse = await api.post(
+    await api.post(
       `/videos/${videoId}/transcription`,
       {
         prompt: promptInputRef.current?.value,
