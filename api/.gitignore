@@ -4,3 +4,6 @@ node_modules
 
 tmp/*
 !tmp/.gitkeep
+
+routes.http
+prisma/dev.db
